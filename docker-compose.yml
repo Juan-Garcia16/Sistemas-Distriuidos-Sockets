@@ -1,0 +1,30 @@
+# Dos nodos independientes en una red privada (equivale al adaptador solo-anfitrion)
+services:
+  vm-servidor:
+    build: .
+    container_name: vm-servidor
+    hostname: vm-servidor
+    cap_add: [NET_ADMIN]          # permite usar iptables (experimento E6/F5)
+    volumes:
+      - ./src:/home/ubuntu/lab    # el codigo del Mac aparece dentro del nodo
+    networks:
+      labnet:
+        ipv4_address: 192.168.56.10
+
+  vm-cliente:
+    build: .
+    container_name: vm-cliente
+    hostname: vm-cliente
+    cap_add: [NET_ADMIN]
+    volumes:
+      - ./src:/home/ubuntu/lab
+    networks:
+      labnet:
+        ipv4_address: 192.168.56.11
+
+networks:
+  labnet:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.56.0/24
