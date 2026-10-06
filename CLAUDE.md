@@ -19,8 +19,8 @@ misma red privada (equivalente al adaptador solo-anfitrión de VirtualBox).
 
 | Máquina      | Rol                  | IP                                   |
 |--------------|----------------------|--------------------------------------|
-| vm-servidor  | ejecuta servidores   | la que muestre `multipass list` (192.168.64.x) |
-| vm-cliente   | ejecuta clientes     | la que muestre `multipass list` (192.168.64.x) |
+| vm-servidor  | ejecuta servidores   | la que muestre `multipass list` (192.168.252.2) |
+| vm-cliente   | ejecuta clientes     | la que muestre `multipass list` (192.168.252.3) |
 | Puerto       | aplicación           | 5000/TCP (código de la guía) · 12345/TCP (código del profe) |
 
 La carpeta `src/` del Mac está montada en ambas VMs en `/home/ubuntu/lab`.

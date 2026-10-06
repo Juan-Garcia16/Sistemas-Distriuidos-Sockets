@@ -14,6 +14,9 @@ for VM in vm-servidor vm-cliente; do
     echo ">> creando $VM (Ubuntu 24.04, 1 CPU, 1 GB RAM, 5 GB disco)"
     multipass launch 24.04 --name "$VM" --cpus 1 --memory 1G --disk 5G
   fi
+  # Esperar a que la VM responda por SSH (el primer arranque tarda)
+  echo ">> esperando a que $VM responda..."
+  until multipass exec "$VM" -- true >/dev/null 2>&1; do sleep 3; done
   # Monta la carpeta src del Mac dentro de la VM (se edita en el Mac, se ejecuta en la VM)
   multipass mount "$REPO/src" "$VM:/home/ubuntu/lab" 2>/dev/null || true
   # Herramientas de diagnostico usadas en la guia (nc, ss ya viene)
